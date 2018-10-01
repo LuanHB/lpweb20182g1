@@ -8,6 +8,7 @@
     <label for="nome">Nome</label>
     <input type="text" id="nome" name="nome" [(ngModel)]="nome" required>
   </div>
+  <br>
   <div>
     <label for="email">E-mail</label>
     <input type="email" id="email" name="email" [(ngModel)]="email" required>
@@ -21,6 +22,7 @@
       <option>gaveteiro</option>
     </select>
   </div>
+  <br>
   <div>
     <label for="puxador">Puxador</label>
     <select id="puxador" name="puxador" [(ngModel)]="mobilia_puxador" required>
@@ -28,6 +30,7 @@
       <option>metal</option>
     </select>
   </div>
+  <br>
   <div>
     <label for="pintura">Pintura</label>
     <select id="pintura" name="pintura" [(ngModel)]="mobilia_pintura" required>
@@ -36,24 +39,29 @@
       <option>laqueado</option>
     </select>
   </div>
+  <br>
   <div>
     <label for="largura">Largura</label>
     <input type="number" id="largura" name="largura" [(ngModel)]="mobilia_largura" required>
   </div>
+  <br>
   <div>
     <label for="altura">Altura</label>
     <input type="number" id="altura" name="altura" [(ngModel)]="mobilia_altura" required>
   </div>
+  <br>
   <div>
     <label for="profundidade">Profundidade</label>
     <input type="number" id="profundidade" name="profundidade" [(ngModel)]="mobilia_profundidade" required>
   </div>
+  <br>
   <button type="button" (click)="adicionarMobilia()">Adicionar</button>
   <h3>Peças de mobília já adicionadas</h3>
   <hr>
   <ul>
     <li *ngFor="let mobilia of mobilias">
-      {{mobilia.tipo}} - {{mobilia.largura}}cm
+      {{mobilia.id}} => {{mobilia.tipo}} | Tipo puxador: {{mobilia.puxador}} - Dimensões: {{mobilia.altura}}, {{mobilia.largura}}, {{mobilia.profundidade}} ||
+      <button type="button" (click)="remover(mobilia)">[X]</button>
     </li>
   </ul>
   <h3>Total do orçamento</h3>
@@ -62,5 +70,5 @@
     {{total_orcamento}}
   </div>
   <button type="button" (click)="mostrar_total()">Calcular</button> 
-  <button>Salvar</button>
+  <button type="submit">Salvar</button>
 </form>

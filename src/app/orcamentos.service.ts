@@ -4,34 +4,36 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class OrcamentosService {
-  orcamentos = [{
-    id: 1,
-    nome: 'Jackson',
-    email: 'jackson.souza@gmail.com',
-    pecas: [
-      {
-        tipo: 'compartimento de armário',
-        puxador: 'plástico',
-        pintura: 'acabamento PU',
-        largura: 1,
-        altura: 1,
-        profundidade: 1
-      },
-      {
-        tipo: 'gaveteiro',
-        puxador: 'metal',
-        pintura: 'acabamento PU texturizado',
-        largura: 15,
-        altura: 30,
-        profundidade: 70
-      }
-    ]
-  }];
+  // orcamento = {
+  //   id: 1,
+  //   nome: 'Jackson',
+  //   email: 'jackson.souza@gmail.com',
+  //   pecas: [
+  //     {
+  //       tipo: 'compartimento de armário',
+  //       puxador: 'plástico',
+  //       pintura: 'acabamento PU',
+  //       largura: 1,
+  //       altura: 1,
+  //       profundidade: 1
+  //     },
+  //     {
+  //       tipo: 'gaveteiro',
+  //       puxador: 'metal',
+  //       pintura: 'acabamento PU texturizado',
+  //       largura: 15,
+  //       altura: 30,
+  //       profundidade: 70
+  //     }
+  //   ]
+  // };
   constructor() { }
+
   salvar(orcamento) {
-    orcamento.id = this.orcamentos.length + 1;
-    this.orcamentos.push(orcamento);
+    orcamento.id = localStorage.length + 1;
+    localStorage.setItem(orcamento.id, JSON.stringify(orcamento))
   }
+
   calcular(orcamento) {
     let somatorio = 0;
     for (let peca of orcamento.pecas) {
@@ -63,13 +65,17 @@ export class OrcamentosService {
     orcamento.custo_total = somatorio * 1.25;
     return orcamento.custo_total;
   }
+
   encontrar(id) {
-    // return this.orcamentos.find(orcamento => orcamento.id === id);
-    for (let orcamento of this.orcamentos) {
-      if (orcamento.id === id) {
-        return orcamento;
-      }
-    }
-    return null;
+    // let orcamentos = JSON.parse(localStorage.getItem(id));
+    // return orcamentos.find(orcamento => orcamento.id === id);
+
+    // for (let orcamento of orcamentos) {
+    //   if (orcamento.id === id) {
+    //     return orcamento;
+    //   }
+    // }
+    // A cima duas formas de fazer a busca na lista, no caso de estarmos enviando listas para o localStorage.
+    return JSON.parse(localStorage.getItem(id));
   }
 }
