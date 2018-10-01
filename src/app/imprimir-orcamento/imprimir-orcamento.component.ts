@@ -25,5 +25,5 @@ export class ImprimirOrcamentoComponent implements OnInit {
     //forma teria uma busca na lista de ojetos, logo esta logica de busca estaria na função encontrar() dentro do 
     //serviço.
   }
-
+  
 }
